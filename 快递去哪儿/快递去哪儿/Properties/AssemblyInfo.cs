@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("快递去哪儿")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("一个用C#写的查快递工具，使用XTO API以及Json.NET")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("快递去哪儿")]
