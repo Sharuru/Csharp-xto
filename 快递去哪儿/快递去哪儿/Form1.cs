@@ -60,21 +60,15 @@ namespace 快递去哪儿
 
         private void TrackSingle(string ID, string Company)
         {
+            string rawJson = null;
             string url = "http://www.kuaidi100.com/query?type=" + Company + "&postid=" + ID; 
             HttpWebRequest HttpWReq = (HttpWebRequest) WebRequest.Create(url);
-            try
-            {
-                HttpWebResponse HttpWResp = (HttpWebResponse) HttpWReq.GetResponse();
-                Stream rawStream = HttpWResp.GetResponseStream();
-                StreamReader r = new StreamReader(rawStream);
-                string rawJson = r.ReadToEnd();
-                HttpWResp.Close();
-                DeserializeJson(rawJson);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("无法连接服务器。\r\n"+ "补充信息：" + ex.Message,"错误",MessageBoxButtons.OK,MessageBoxIcon.Information);
-            }
+            HttpWebResponse HttpWResp = (HttpWebResponse)HttpWReq.GetResponse();
+            Stream rawStream = HttpWResp.GetResponseStream();
+            StreamReader r = new StreamReader(rawStream);
+            rawJson = r.ReadToEnd();
+            HttpWResp.Close();
+            DeserializeJson(rawJson);
             
         }
 
@@ -82,6 +76,11 @@ namespace 快递去哪儿
         {
             var json = JsonConvert.DeserializeObject<Json>(rawJson);
             MessageBox.Show("Starting...");
+            if (json.status != "200")
+            {
+                MessageBox.Show("快递公司参数异常：单号不存在或者已经过期。", "错误", MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+            }
             foreach (var data in json.data)
             {
                     MessageBox.Show(data.context.ToString());
