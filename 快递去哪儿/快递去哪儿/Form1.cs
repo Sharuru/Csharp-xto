@@ -46,12 +46,20 @@ namespace 快递去哪儿
 
         private void InitComoboxSingleCompany()
         {
+            //TODO: As a config file future
             Dictionary<string, string> companyDict = new Dictionary<string, string>();
+            companyDict.Add("BSHT-百世汇通","huitongkuaidi");
             companyDict.Add("EMS-EMS", "ems");
+            companyDict.Add("EMSGJKD-EMS国际快递","emsguoji");
+            companyDict.Add("QFKD-全峰快递","quanfengkuaidi");
             companyDict.Add("SFSY-顺丰速运", "shunfeng");
             companyDict.Add("STKD-申通快递", "shentong");
+            companyDict.Add("TTKD-天天快递","tiantian");
             companyDict.Add("YDKD-韵达快递","yunda");
+            companyDict.Add("YZGJBG-邮政国际包裹","YOUZENGGUOJI");
+            companyDict.Add("YZGNBG-邮政国内包裹", "youzhengguonei");
             companyDict.Add("YTSD-圆通速递","yuantong");
+            companyDict.Add("ZJS-宅急送","zhaijisong");
             companyDict.Add("ZTKD-中通快递","zhongtong");
             comboBoxSingleCompany.DataSource = new BindingSource(companyDict, null);
             comboBoxSingleCompany.DisplayMember = "Key";
@@ -75,18 +83,28 @@ namespace 快递去哪儿
         private void DeserializeJson(string rawJson)
         {
             var json = JsonConvert.DeserializeObject<Json>(rawJson);
-            MessageBox.Show("Starting...");
             if (json.status != "200")
             {
                 MessageBox.Show("快递公司参数异常：单号不存在或者已经过期。", "错误", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
+            else
+            {
+                ShowTrackInfo(json);
+            }
+        }
+
+        private void ShowTrackInfo(Json json)
+        {
+
             foreach (var data in json.data)
             {
-                    MessageBox.Show(data.context.ToString());
+                int index = dataGridViewSingle.Rows.Add();
+                dataGridViewSingle.Rows[index].Cells[0].Value = data.time;
+                dataGridViewSingle.Rows[index].Cells[1].Value = data.context;
             }
-
         }
+
         public class Data
         {
             public string time { get; set; }

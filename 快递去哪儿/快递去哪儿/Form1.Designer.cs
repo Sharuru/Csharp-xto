@@ -46,6 +46,8 @@ namespace 快递去哪儿
             this.tabPageDouble = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabControlMain.SuspendLayout();
             this.tabPageSingle.SuspendLayout();
             this.groupBoxSingle4.SuspendLayout();
@@ -100,14 +102,27 @@ namespace 快递去哪儿
             // 
             this.dataGridViewSingle.AllowUserToAddRows = false;
             this.dataGridViewSingle.AllowUserToDeleteRows = false;
+            this.dataGridViewSingle.AllowUserToResizeRows = false;
             this.dataGridViewSingle.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridViewSingle.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridViewSingle.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSingle.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2});
             this.dataGridViewSingle.Location = new System.Drawing.Point(7, 21);
+            this.dataGridViewSingle.MultiSelect = false;
             this.dataGridViewSingle.Name = "dataGridViewSingle";
             this.dataGridViewSingle.ReadOnly = true;
+            this.dataGridViewSingle.RowHeadersVisible = false;
             this.dataGridViewSingle.RowTemplate.Height = 23;
+            this.dataGridViewSingle.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.dataGridViewSingle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewSingle.ShowCellErrors = false;
+            this.dataGridViewSingle.ShowCellToolTips = false;
+            this.dataGridViewSingle.ShowEditingIcon = false;
+            this.dataGridViewSingle.ShowRowErrors = false;
             this.dataGridViewSingle.Size = new System.Drawing.Size(726, 201);
             this.dataGridViewSingle.TabIndex = 0;
             // 
@@ -224,6 +239,20 @@ namespace 快递去哪儿
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(131, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 40F;
+            this.Column1.HeaderText = "时间";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 60F;
+            this.Column2.HeaderText = "地点和跟踪进度";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -268,6 +297,8 @@ namespace 快递去哪儿
         private System.Windows.Forms.Button buttonSingle;
         private System.Windows.Forms.GroupBox groupBoxSingle4;
         private System.Windows.Forms.DataGridView dataGridViewSingle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }
 
