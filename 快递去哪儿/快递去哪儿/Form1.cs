@@ -24,6 +24,8 @@ namespace 快递去哪儿
 
         private void buttonSingle_Click(object sender, EventArgs e)
         {
+            //Clean first
+            dataGridViewSingle.Rows.Clear();
             if (IsSingleInputLeagel() == false)
             {
                 MessageBox.Show("输入信息有误，请检查。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
