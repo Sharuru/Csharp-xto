@@ -2,7 +2,7 @@
 
 Just a toy using XTO API to query each express.
 
-Inspired by XadillaX's great work and 404neko's [trick](https://github.com/404neko/pxto) ::smile::
+Inspired by XadillaX's great work and 404neko's [trick](https://github.com/404neko/pxto) :smile:
 
 ##About XTO
 
