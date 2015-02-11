@@ -21,9 +21,9 @@ namespace csxto
             //Clear track result first
             dataGridViewSingle.Rows.Clear();
             //Then clear overview
-            labelSingleCompanyP.Text = "快递公司：";
-            labelSingleIDP.Text = "快递单号：";
-            labelSingleStatusP.Text = "快递状态：";
+            labelSingleCompanyP.Text = @"快递公司：";
+            labelSingleIDP.Text = @"快递单号：";
+            labelSingleStatusP.Text = @"快递状态：";
             if (IsSingleInputLeagel() == false)
             {
                 MessageBox.Show(@"输入信息有误，请检查。", @"错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -73,15 +73,24 @@ namespace csxto
             comboBoxSingleCompany.ValueMember = "Value";
         }
 
-        private void TrackSingle(string ID, string Company)
+        private void TrackSingle(string id, string company)
         {
-            string url = "http://www.kuaidi100.com/query?type=" + Company + "&postid=" + ID; 
-            HttpWebRequest httpWReq = (HttpWebRequest) WebRequest.Create(url);
-            HttpWebResponse httpWResp = (HttpWebResponse)httpWReq.GetResponse();
-            Stream rawStream = httpWResp.GetResponseStream();
-            StreamReader r = new StreamReader(rawStream);
-            string rawJson = r.ReadToEnd();
-            httpWResp.Close();
+            string rawJson;
+            try
+            {
+                var url = "http://www.kuaidi100.com/query?type=" + company + "&postid=" + id;
+                var httpWReq = (HttpWebRequest) WebRequest.Create(url);
+                var httpWResp = (HttpWebResponse) httpWReq.GetResponse();
+                var rawStream = httpWResp.GetResponseStream();
+                var reader = new StreamReader(rawStream);
+                rawJson = reader.ReadToEnd();
+                httpWResp.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, @"错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             DeserializeJson(rawJson);
         }
 
@@ -90,7 +99,7 @@ namespace csxto
             var json = JsonConvert.DeserializeObject<Json>(rawJson);
             if (json.status != "200")
             {
-                MessageBox.Show("快递公司参数异常：单号不存在或者已经过期。", "错误", MessageBoxButtons.OK,
+                MessageBox.Show(@"快递公司参数异常：单号不存在或者已经过期。", @"错误", MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
             }
             else
@@ -102,8 +111,8 @@ namespace csxto
         private void ShowTrackInfo(Json json)
         {
             //Handle overview
-            labelSingleCompanyP.Text = "快递公司：" + comboBoxSingleCompany.Text;
-            labelSingleIDP.Text = "快递单号：" + json.nu;
+            labelSingleCompanyP.Text = @"快递公司：" + comboBoxSingleCompany.Text;
+            labelSingleIDP.Text = @"快递单号：" + json.nu;
             //TODO: Also as a config file future
             string state = null;
             switch (json.state)
@@ -130,11 +139,11 @@ namespace csxto
                     state = "退回中";
                     break;
             }
-            labelSingleStatusP.Text = "快递状态：" + state;
+            labelSingleStatusP.Text = @"快递状态：" + state;
             //Handle dataGirdViewSingle
             foreach (var data in json.data)
             {
-                int index = dataGridViewSingle.Rows.Add();
+                var index = dataGridViewSingle.Rows.Add();
                 dataGridViewSingle.Rows[index].Cells[0].Value = data.time;
                 dataGridViewSingle.Rows[index].Cells[1].Value = data.context;
             }
