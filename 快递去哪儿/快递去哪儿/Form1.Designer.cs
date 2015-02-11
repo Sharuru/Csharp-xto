@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.tabPageSingle = new System.Windows.Forms.TabPage();
-            this.groupBoxSingle4 = new System.Windows.Forms.GroupBox();
+            this.groupBoxSingle5 = new System.Windows.Forms.GroupBox();
             this.dataGridViewSingle = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,14 +49,19 @@
             this.toolStripStatusLabelProjectAddress = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelInspired = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabelInspiredAddress = new System.Windows.Forms.ToolStripStatusLabel();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.labelSingleCompanyP = new System.Windows.Forms.Label();
+            this.labelSingleIDP = new System.Windows.Forms.Label();
+            this.labelSingleStatusP = new System.Windows.Forms.Label();
             this.tabControlMain.SuspendLayout();
             this.tabPageSingle.SuspendLayout();
-            this.groupBoxSingle4.SuspendLayout();
+            this.groupBoxSingle5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSingle)).BeginInit();
             this.groupBoxSingle3.SuspendLayout();
             this.groupBoxSingle2.SuspendLayout();
             this.groupBoxSingle1.SuspendLayout();
             this.statusStrip.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControlMain
@@ -75,7 +80,8 @@
             // tabPageSingle
             // 
             this.tabPageSingle.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPageSingle.Controls.Add(this.groupBoxSingle4);
+            this.tabPageSingle.Controls.Add(this.groupBox4);
+            this.tabPageSingle.Controls.Add(this.groupBoxSingle5);
             this.tabPageSingle.Controls.Add(this.groupBoxSingle3);
             this.tabPageSingle.Controls.Add(this.groupBoxSingle2);
             this.tabPageSingle.Controls.Add(this.groupBoxSingle1);
@@ -86,18 +92,18 @@
             this.tabPageSingle.TabIndex = 0;
             this.tabPageSingle.Text = "单件查询";
             // 
-            // groupBoxSingle4
+            // groupBoxSingle5
             // 
-            this.groupBoxSingle4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.groupBoxSingle5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBoxSingle4.Controls.Add(this.dataGridViewSingle);
-            this.groupBoxSingle4.Location = new System.Drawing.Point(6, 63);
-            this.groupBoxSingle4.Name = "groupBoxSingle4";
-            this.groupBoxSingle4.Size = new System.Drawing.Size(739, 228);
-            this.groupBoxSingle4.TabIndex = 4;
-            this.groupBoxSingle4.TabStop = false;
-            this.groupBoxSingle4.Text = "查询结果";
+            this.groupBoxSingle5.Controls.Add(this.dataGridViewSingle);
+            this.groupBoxSingle5.Location = new System.Drawing.Point(6, 113);
+            this.groupBoxSingle5.Name = "groupBoxSingle5";
+            this.groupBoxSingle5.Size = new System.Drawing.Size(739, 178);
+            this.groupBoxSingle5.TabIndex = 4;
+            this.groupBoxSingle5.TabStop = false;
+            this.groupBoxSingle5.Text = "详细溯源";
             // 
             // dataGridViewSingle
             // 
@@ -124,7 +130,7 @@
             this.dataGridViewSingle.ShowCellToolTips = false;
             this.dataGridViewSingle.ShowEditingIcon = false;
             this.dataGridViewSingle.ShowRowErrors = false;
-            this.dataGridViewSingle.Size = new System.Drawing.Size(726, 201);
+            this.dataGridViewSingle.Size = new System.Drawing.Size(726, 151);
             this.dataGridViewSingle.TabIndex = 0;
             // 
             // Column1
@@ -167,9 +173,9 @@
             this.groupBoxSingle2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxSingle2.Controls.Add(this.comboBoxSingleCompany);
             this.groupBoxSingle2.Controls.Add(this.labelSingleCompany);
-            this.groupBoxSingle2.Location = new System.Drawing.Point(284, 7);
+            this.groupBoxSingle2.Location = new System.Drawing.Point(270, 7);
             this.groupBoxSingle2.Name = "groupBoxSingle2";
-            this.groupBoxSingle2.Size = new System.Drawing.Size(243, 49);
+            this.groupBoxSingle2.Size = new System.Drawing.Size(257, 49);
             this.groupBoxSingle2.TabIndex = 2;
             this.groupBoxSingle2.TabStop = false;
             this.groupBoxSingle2.Text = "2.选择快递公司";
@@ -184,7 +190,7 @@
             this.comboBoxSingleCompany.Location = new System.Drawing.Point(108, 17);
             this.comboBoxSingleCompany.Name = "comboBoxSingleCompany";
             this.comboBoxSingleCompany.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.comboBoxSingleCompany.Size = new System.Drawing.Size(129, 20);
+            this.comboBoxSingleCompany.Size = new System.Drawing.Size(143, 20);
             this.comboBoxSingleCompany.TabIndex = 1;
             // 
             // labelSingleCompany
@@ -204,7 +210,7 @@
             this.groupBoxSingle1.Controls.Add(this.labelSingleID);
             this.groupBoxSingle1.Location = new System.Drawing.Point(6, 6);
             this.groupBoxSingle1.Name = "groupBoxSingle1";
-            this.groupBoxSingle1.Size = new System.Drawing.Size(272, 50);
+            this.groupBoxSingle1.Size = new System.Drawing.Size(258, 50);
             this.groupBoxSingle1.TabIndex = 0;
             this.groupBoxSingle1.TabStop = false;
             this.groupBoxSingle1.Text = "1.输入快递单号";
@@ -216,7 +222,7 @@
             this.textBoxSingleID.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.textBoxSingleID.Location = new System.Drawing.Point(108, 18);
             this.textBoxSingleID.Name = "textBoxSingleID";
-            this.textBoxSingleID.Size = new System.Drawing.Size(158, 21);
+            this.textBoxSingleID.Size = new System.Drawing.Size(144, 21);
             this.textBoxSingleID.TabIndex = 1;
             // 
             // labelSingleID
@@ -279,6 +285,45 @@
             this.toolStripStatusLabelInspiredAddress.Text = "https://github.com/XadillaX/xto/";
             this.toolStripStatusLabelInspiredAddress.Click += new System.EventHandler(this.toolStripStatusLabelInspiredAddress_Click);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.labelSingleStatusP);
+            this.groupBox4.Controls.Add(this.labelSingleIDP);
+            this.groupBox4.Controls.Add(this.labelSingleCompanyP);
+            this.groupBox4.Location = new System.Drawing.Point(7, 63);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(738, 44);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "信息概览";
+            // 
+            // labelSingleCompanyP
+            // 
+            this.labelSingleCompanyP.AutoSize = true;
+            this.labelSingleCompanyP.Location = new System.Drawing.Point(270, 21);
+            this.labelSingleCompanyP.Name = "labelSingleCompanyP";
+            this.labelSingleCompanyP.Size = new System.Drawing.Size(65, 12);
+            this.labelSingleCompanyP.TabIndex = 0;
+            this.labelSingleCompanyP.Text = "快递公司：";
+            // 
+            // labelSingleIDP
+            // 
+            this.labelSingleIDP.AutoSize = true;
+            this.labelSingleIDP.Location = new System.Drawing.Point(6, 21);
+            this.labelSingleIDP.Name = "labelSingleIDP";
+            this.labelSingleIDP.Size = new System.Drawing.Size(65, 12);
+            this.labelSingleIDP.TabIndex = 1;
+            this.labelSingleIDP.Text = "快递单号：";
+            // 
+            // labelSingleStatusP
+            // 
+            this.labelSingleStatusP.AutoSize = true;
+            this.labelSingleStatusP.Location = new System.Drawing.Point(530, 21);
+            this.labelSingleStatusP.Name = "labelSingleStatusP";
+            this.labelSingleStatusP.Size = new System.Drawing.Size(65, 12);
+            this.labelSingleStatusP.TabIndex = 2;
+            this.labelSingleStatusP.Text = "快递状态：";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -292,7 +337,7 @@
             this.Text = "快递去哪儿";
             this.tabControlMain.ResumeLayout(false);
             this.tabPageSingle.ResumeLayout(false);
-            this.groupBoxSingle4.ResumeLayout(false);
+            this.groupBoxSingle5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSingle)).EndInit();
             this.groupBoxSingle3.ResumeLayout(false);
             this.groupBoxSingle2.ResumeLayout(false);
@@ -301,6 +346,8 @@
             this.groupBoxSingle1.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -321,13 +368,17 @@
         private System.Windows.Forms.Label labelSingleCompany;
         private System.Windows.Forms.GroupBox groupBoxSingle3;
         private System.Windows.Forms.Button buttonSingle;
-        private System.Windows.Forms.GroupBox groupBoxSingle4;
+        private System.Windows.Forms.GroupBox groupBoxSingle5;
         private System.Windows.Forms.DataGridView dataGridViewSingle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelProjectAddress;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelInspired;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelInspiredAddress;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.Label labelSingleStatusP;
+        private System.Windows.Forms.Label labelSingleIDP;
+        private System.Windows.Forms.Label labelSingleCompanyP;
     }
 }
 

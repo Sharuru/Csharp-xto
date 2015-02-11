@@ -18,8 +18,12 @@ namespace csxto
         #region event handle
         private void buttonSingle_Click(object sender, EventArgs e)
         {
-            //Clean track result first
+            //Clear track result first
             dataGridViewSingle.Rows.Clear();
+            //Then clear overview
+            labelSingleCompanyP.Text = "快递公司：";
+            labelSingleIDP.Text = "快递单号：";
+            labelSingleStatusP.Text = "快递状态：";
             if (IsSingleInputLeagel() == false)
             {
                 MessageBox.Show(@"输入信息有误，请检查。", @"错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -44,11 +48,7 @@ namespace csxto
         private bool IsSingleInputLeagel()
         {
             //Check user input
-            if (textBoxSingleID.Text == "" || comboBoxSingleCompany.SelectedItem == null)
-            {
-                return false;
-            }
-            return true;
+            return textBoxSingleID.Text != "" && comboBoxSingleCompany.SelectedItem != null;
         }
 
         private void InitComoboxSingleCompany()
@@ -76,12 +76,12 @@ namespace csxto
         private void TrackSingle(string ID, string Company)
         {
             string url = "http://www.kuaidi100.com/query?type=" + Company + "&postid=" + ID; 
-            HttpWebRequest HttpWReq = (HttpWebRequest) WebRequest.Create(url);
-            HttpWebResponse HttpWResp = (HttpWebResponse)HttpWReq.GetResponse();
-            Stream rawStream = HttpWResp.GetResponseStream();
+            HttpWebRequest httpWReq = (HttpWebRequest) WebRequest.Create(url);
+            HttpWebResponse httpWResp = (HttpWebResponse)httpWReq.GetResponse();
+            Stream rawStream = httpWResp.GetResponseStream();
             StreamReader r = new StreamReader(rawStream);
             string rawJson = r.ReadToEnd();
-            HttpWResp.Close();
+            httpWResp.Close();
             DeserializeJson(rawJson);
         }
 
@@ -101,7 +101,37 @@ namespace csxto
 
         private void ShowTrackInfo(Json json)
         {
-
+            //Handle overview
+            labelSingleCompanyP.Text = "快递公司：" + comboBoxSingleCompany.Text;
+            labelSingleIDP.Text = "快递单号：" + json.nu;
+            //TODO: Also as a config file future
+            string state = null;
+            switch (json.state)
+            {
+                case "0":
+                    state = "运输中";
+                    break;
+                case "1":
+                    state = "已揽收";
+                    break;
+                case "2":
+                    state = "疑难件";
+                    break;
+                case "3":
+                    state = "已签收";
+                    break;
+                case "4":
+                    state = "已退回";
+                    break;
+                case "5":
+                    state = "派送中";
+                    break;
+                case "6":
+                    state = "退回中";
+                    break;
+            }
+            labelSingleStatusP.Text = "快递状态：" + state;
+            //Handle dataGirdViewSingle
             foreach (var data in json.data)
             {
                 int index = dataGridViewSingle.Rows.Add();
