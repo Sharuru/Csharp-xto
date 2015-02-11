@@ -33,6 +33,8 @@
             this.tabPageSingle = new System.Windows.Forms.TabPage();
             this.groupBoxSingle4 = new System.Windows.Forms.GroupBox();
             this.dataGridViewSingle = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxSingle3 = new System.Windows.Forms.GroupBox();
             this.buttonSingle = new System.Windows.Forms.Button();
             this.groupBoxSingle2 = new System.Windows.Forms.GroupBox();
@@ -43,9 +45,10 @@
             this.labelSingleID = new System.Windows.Forms.Label();
             this.tabPageDouble = new System.Windows.Forms.TabPage();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripStatusLabelProject = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelProjectAddress = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelInspired = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabelInspiredAddress = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabControlMain.SuspendLayout();
             this.tabPageSingle.SuspendLayout();
             this.groupBoxSingle4.SuspendLayout();
@@ -124,6 +127,20 @@
             this.dataGridViewSingle.Size = new System.Drawing.Size(726, 201);
             this.dataGridViewSingle.TabIndex = 0;
             // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 40F;
+            this.Column1.HeaderText = "时间";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 60F;
+            this.Column2.HeaderText = "地点和跟踪进度";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
             // groupBoxSingle3
             // 
             this.groupBoxSingle3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -164,7 +181,7 @@
             this.comboBoxSingleCompany.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.comboBoxSingleCompany.FormattingEnabled = true;
             this.comboBoxSingleCompany.ImeMode = System.Windows.Forms.ImeMode.Disable;
-            this.comboBoxSingleCompany.Location = new System.Drawing.Point(108, 18);
+            this.comboBoxSingleCompany.Location = new System.Drawing.Point(108, 17);
             this.comboBoxSingleCompany.Name = "comboBoxSingleCompany";
             this.comboBoxSingleCompany.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.comboBoxSingleCompany.Size = new System.Drawing.Size(129, 20);
@@ -175,9 +192,9 @@
             this.labelSingleCompany.AutoSize = true;
             this.labelSingleCompany.Location = new System.Drawing.Point(7, 21);
             this.labelSingleCompany.Name = "labelSingleCompany";
-            this.labelSingleCompany.Size = new System.Drawing.Size(95, 12);
+            this.labelSingleCompany.Size = new System.Drawing.Size(101, 12);
             this.labelSingleCompany.TabIndex = 0;
-            this.labelSingleCompany.Text = "请选择快递公司:";
+            this.labelSingleCompany.Text = "请选择快递公司：";
             // 
             // groupBoxSingle1
             // 
@@ -207,9 +224,9 @@
             this.labelSingleID.AutoSize = true;
             this.labelSingleID.Location = new System.Drawing.Point(7, 21);
             this.labelSingleID.Name = "labelSingleID";
-            this.labelSingleID.Size = new System.Drawing.Size(95, 12);
+            this.labelSingleID.Size = new System.Drawing.Size(101, 12);
             this.labelSingleID.TabIndex = 0;
-            this.labelSingleID.Text = "请输入快递单号:";
+            this.labelSingleID.Text = "请输入快递单号：";
             // 
             // tabPageDouble
             // 
@@ -224,32 +241,43 @@
             // statusStrip
             // 
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabelProject,
+            this.toolStripStatusLabelProjectAddress,
+            this.toolStripStatusLabelInspired,
+            this.toolStripStatusLabelInspiredAddress});
             this.statusStrip.Location = new System.Drawing.Point(0, 339);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(784, 22);
             this.statusStrip.TabIndex = 1;
             this.statusStrip.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // toolStripStatusLabelProject
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(131, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.toolStripStatusLabelProject.Name = "toolStripStatusLabelProject";
+            this.toolStripStatusLabelProject.Size = new System.Drawing.Size(68, 17);
+            this.toolStripStatusLabelProject.Text = "项目地址：";
             // 
-            // Column1
+            // toolStripStatusLabelProjectAddress
             // 
-            this.Column1.FillWeight = 40F;
-            this.Column1.HeaderText = "时间";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.toolStripStatusLabelProjectAddress.IsLink = true;
+            this.toolStripStatusLabelProjectAddress.Name = "toolStripStatusLabelProjectAddress";
+            this.toolStripStatusLabelProjectAddress.Size = new System.Drawing.Size(239, 17);
+            this.toolStripStatusLabelProjectAddress.Text = "https://github.com/Sharuru/Csharp-xto/";
+            this.toolStripStatusLabelProjectAddress.Click += new System.EventHandler(this.toolStripStatusLabelProjectAddress_Click);
             // 
-            // Column2
+            // toolStripStatusLabelInspired
             // 
-            this.Column2.FillWeight = 60F;
-            this.Column2.HeaderText = "地点和跟踪进度";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.toolStripStatusLabelInspired.Name = "toolStripStatusLabelInspired";
+            this.toolStripStatusLabelInspired.Size = new System.Drawing.Size(56, 17);
+            this.toolStripStatusLabelInspired.Text = "启发于：";
+            // 
+            // toolStripStatusLabelInspiredAddress
+            // 
+            this.toolStripStatusLabelInspiredAddress.IsLink = true;
+            this.toolStripStatusLabelInspiredAddress.Name = "toolStripStatusLabelInspiredAddress";
+            this.toolStripStatusLabelInspiredAddress.Size = new System.Drawing.Size(195, 17);
+            this.toolStripStatusLabelInspiredAddress.Text = "https://github.com/XadillaX/xto/";
+            this.toolStripStatusLabelInspiredAddress.Click += new System.EventHandler(this.toolStripStatusLabelInspiredAddress_Click);
             // 
             // Form1
             // 
@@ -284,7 +312,7 @@
         private System.Windows.Forms.TabPage tabPageSingle;
         private System.Windows.Forms.TabPage tabPageDouble;
         private System.Windows.Forms.StatusStrip statusStrip;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelProject;
         private System.Windows.Forms.GroupBox groupBoxSingle1;
         private System.Windows.Forms.TextBox textBoxSingleID;
         private System.Windows.Forms.Label labelSingleID;
@@ -297,6 +325,9 @@
         private System.Windows.Forms.DataGridView dataGridViewSingle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelProjectAddress;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelInspired;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelInspiredAddress;
     }
 }
 

@@ -15,19 +15,31 @@ namespace csxto
             InitComoboxSingleCompany();
         }
 
+        #region event handle
         private void buttonSingle_Click(object sender, EventArgs e)
         {
-            //Clean first
+            //Clean track result first
             dataGridViewSingle.Rows.Clear();
             if (IsSingleInputLeagel() == false)
             {
-                MessageBox.Show("输入信息有误，请检查。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(@"输入信息有误，请检查。", @"错误", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
                 TrackSingle(textBoxSingleID.Text, comboBoxSingleCompany.SelectedValue.ToString());
             }
         }
+
+        private void toolStripStatusLabelProjectAddress_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Sharuru/Csharp-xto/");
+        }
+
+        private void toolStripStatusLabelInspiredAddress_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/XadillaX/xto/");
+        }
+        #endregion
 
         private bool IsSingleInputLeagel()
         {
@@ -63,16 +75,14 @@ namespace csxto
 
         private void TrackSingle(string ID, string Company)
         {
-            string rawJson = null;
             string url = "http://www.kuaidi100.com/query?type=" + Company + "&postid=" + ID; 
             HttpWebRequest HttpWReq = (HttpWebRequest) WebRequest.Create(url);
             HttpWebResponse HttpWResp = (HttpWebResponse)HttpWReq.GetResponse();
             Stream rawStream = HttpWResp.GetResponseStream();
             StreamReader r = new StreamReader(rawStream);
-            rawJson = r.ReadToEnd();
+            string rawJson = r.ReadToEnd();
             HttpWResp.Close();
             DeserializeJson(rawJson);
-            
         }
 
         private void DeserializeJson(string rawJson)
@@ -100,15 +110,7 @@ namespace csxto
             }
         }
 
-        public class Data
-        {
-            public string time { get; set; }
-            public string location { get; set; }
-            public string context { get; set; }
-            public string ftime { get; set; }
-        }
-
-
+        #region Data Structure
         public class Json
         {
             public string message { get; set; }
@@ -121,6 +123,15 @@ namespace csxto
             public List<Data> data { get; set; }
             public string state { get; set; }
         }
+        public class Data
+        {
+            public string time { get; set; }
+            public string location { get; set; }
+            public string context { get; set; }
+            public string ftime { get; set; }
+        }
+        #endregion
+
 
     }
 
