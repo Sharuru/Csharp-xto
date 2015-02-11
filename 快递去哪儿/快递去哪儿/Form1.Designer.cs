@@ -1,6 +1,4 @@
-﻿using System.Data;
-
-namespace 快递去哪儿
+﻿namespace csxto
 {
     partial class Form1
     {

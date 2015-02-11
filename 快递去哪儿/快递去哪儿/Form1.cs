@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Net;
-using System.Windows.Forms.VisualStyles;
+using System.Windows.Forms;
 using Newtonsoft.Json;
 
-namespace 快递去哪儿
+namespace csxto
 {
     public partial class Form1 : Form
     {
