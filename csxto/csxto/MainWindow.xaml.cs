@@ -25,5 +25,10 @@ namespace csxto
         {
             InitializeComponent();
         }
+
+        private void TextBlockGuideProjectAddress_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Sharuru/Csharp-xto/");
+        }
     }
 }

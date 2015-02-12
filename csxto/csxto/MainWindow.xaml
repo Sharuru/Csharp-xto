@@ -3,9 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Express Tracker" Height="560" Width="491"
-        ShowIconOnTitleBar="True"
+        ShowIconOnTitleBar="False"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        BorderThickness="1" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="645" MinHeight="560"
+        BorderThickness="1" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="645" MinHeight="560" Icon="app.ico"
         >
 
     <Grid Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
@@ -18,6 +18,6 @@
         <Label x:Name="LabelGuideSingle4" Content="Details:" HorizontalAlignment="Left" Margin="10,179,0,0" VerticalAlignment="Top" Height="26" Width="154"/>
         <DataGrid Margin="10,210,10,40"/>
         <Label x:Name="LabelGuideProject" Content="Project:" HorizontalAlignment="Left" Margin="10,0,0,10" Width="53" Height="26" VerticalAlignment="Bottom"/>
-        <Label x:Name="LabelGuideProjectAddress" Content="https://github.com/Sharuru/Csharp-xto" HorizontalAlignment="Left" Margin="63,0,0,10" Width="255" Height="26" VerticalAlignment="Bottom"/>
+        <TextBlock x:Name="TextBlockGuideProjectAddress" HorizontalAlignment="Left" Margin="68,0,0,16" TextWrapping="Wrap" Text="https://github.com/Sharuru/Csharp-xto" TextDecorations="Underline" Foreground="White" Height="15" VerticalAlignment="Bottom" Cursor="Hand" MouseDown="TextBlockGuideProjectAddress_MouseDown"/>
     </Grid>
 </Controls:MetroWindow>
