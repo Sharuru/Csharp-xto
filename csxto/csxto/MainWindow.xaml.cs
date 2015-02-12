@@ -1,19 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Newtonsoft.Json;
@@ -23,20 +14,17 @@ namespace csxto
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow
     {
-        Dictionary<string,string> companyData = new Dictionary<string, string>(); 
         public MainWindow()
         {
             InitializeComponent();
-            if (ConfigLoader.DataFileCheck())
-            {
-                companyData = ConfigLoader.MakeCompanyDict();
-                ComboBoxSingleCompany.ItemsSource = companyData;
-                ComboBoxSingleCompany.DisplayMemberPath = "Key";
-                ComboBoxSingleCompany.SelectedValuePath = "Value";
-                ComboBoxSingleCompany.SelectedIndex = 0;
-            }
+            if (!ConfigLoader.DataFileCheck()) return;
+            var companyData = ConfigLoader.MakeCompanyDict();
+            ComboBoxSingleCompany.ItemsSource = companyData;
+            ComboBoxSingleCompany.DisplayMemberPath = "Key";
+            ComboBoxSingleCompany.SelectedValuePath = "Value";
+            ComboBoxSingleCompany.SelectedIndex = 0;
         }
 
         private bool IsSingleInputLeagel()
@@ -47,6 +35,10 @@ namespace csxto
 
         private async void ButtonSingleTrack_Click(object sender, RoutedEventArgs e)
         {
+            //Clean first
+            DataGridSingle.Items.Clear();
+            LabelSingleStateo.Content = "State:";
+
             if (IsSingleInputLeagel() == false)
             {
                 await this.ShowMessageAsync("ERROR", "Please check your input info.");
@@ -58,15 +50,18 @@ namespace csxto
         }
         private void TrackSingle(string id, string company)
         {
-            string rawJson;
+            string rawJson = null;
             try
             {
                 var url = "http://www.kuaidi100.com/query?type=" + company + "&postid=" + id;
                 var httpWReq = (HttpWebRequest)WebRequest.Create(url);
                 var httpWResp = (HttpWebResponse)httpWReq.GetResponse();
                 var rawStream = httpWResp.GetResponseStream();
-                var reader = new StreamReader(rawStream);
-                rawJson = reader.ReadToEnd();
+                if (rawStream != null)
+                {
+                    var reader = new StreamReader(rawStream);
+                    rawJson = reader.ReadToEnd();
+                }
                 httpWResp.Close();
             }
             catch (Exception ex)
@@ -82,7 +77,7 @@ namespace csxto
             var json = JsonConvert.DeserializeObject<Json>(rawJson);
             if (json.status != "200")
             {
-                await this.ShowMessageAsync("ERROR", "Out date");
+                await this.ShowMessageAsync("ERROR", "Number may out of date.");
             }
             else
             {
@@ -103,7 +98,6 @@ namespace csxto
         private void ShowTrackInfo(Json json)
         {
             //Handle overview
-            //TODO: Also as a config file future
             string state = null;
             switch (json.state)
             {
@@ -133,7 +127,7 @@ namespace csxto
             //Handle dataGirdViewSingle
             foreach (var data in json.data)
             {
-                DataGridSingle.Items.Add(new DataGridRow()
+                DataGridSingle.Items.Add(new DataGridRow
                 {
                     Item = new {TIME = data.time, PROGRESS = data.context}
                 });
