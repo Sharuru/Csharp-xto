@@ -10,7 +10,7 @@ namespace csxto
 {
     class ConfigLoader
     {
-        internal bool DataFileCheck()
+        public static bool DataFileCheck()
         {
             //Check data file exist or not
             if (File.Exists(Environment.CurrentDirectory + "\\company.dat") == false)
@@ -20,10 +20,9 @@ namespace csxto
                 Application.Current.Shutdown();
             }
             return true;
-
         }
 
-        internal Dictionary<string,string> MakeCompanyDict()
+        public static Dictionary<string,string> MakeCompanyDict()
         {
             Dictionary<string, string> companyData = new Dictionary<string, string>();
             var datPath = Environment.CurrentDirectory + "\\company.dat";
@@ -31,8 +30,11 @@ namespace csxto
             while (sr.Peek() >= 0)
             {
                 string rawData = sr.ReadLine();
-                string[] data = rawData.Split(new char[] {','});
-                companyData.Add(data[0],data[1]);
+                if (rawData != null)
+                {
+                    string[] data = rawData.Split(',');
+                    companyData.Add(data[0],data[1]);
+                }
             }
             return companyData;
         }
