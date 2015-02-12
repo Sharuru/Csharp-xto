@@ -30,5 +30,16 @@ namespace csxto
         {
             System.Diagnostics.Process.Start("https://github.com/Sharuru/Csharp-xto/");
         }
+
+        private void ButtonSingleTrack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RightWindowCommandsAbout_Click(object sender, RoutedEventArgs e)
+        {
+            FlyoutAbout.IsOpen = true;
+        }
+
     }
 }
