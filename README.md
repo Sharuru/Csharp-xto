@@ -1,6 +1,5 @@
 # Csharp-xto
 
-[![Build status](https://ci.appveyor.com/api/projects/status/twpnlvdd5tn5q98w?svg=true)](https://ci.appveyor.com/project/Sharuru/csharp-xto)
 
 Just a toy using XTO API to query each express.
 
