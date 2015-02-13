@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Security.AccessControl;
 using System.Windows;
+using System.Drawing;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using MahApps.Metro.Controls.Dialogs;
 using Newtonsoft.Json;
 
@@ -15,9 +19,15 @@ namespace csxto
     /// </summary>
     public partial class MainWindow
     {
+
         public MainWindow()
         {
             InitializeComponent();
+
+            NotifyIcon notifyIcon = new NotifyIcon();
+            notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
+            notifyIcon.Visible = true;
+
             if (!ConfigLoader.DataFileCheck()) return;
             var companyData = ConfigLoader.MakeCompanyDict();
             ComboBoxSingleCompany.ItemsSource = companyData;
