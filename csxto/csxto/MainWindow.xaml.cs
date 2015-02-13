@@ -19,12 +19,13 @@ namespace csxto
     /// </summary>
     public partial class MainWindow
     {
+        private NotifyIcon notifyIcon = new NotifyIcon();
 
         public MainWindow()
         {
             InitializeComponent();
 
-            NotifyIcon notifyIcon = new NotifyIcon();
+
             notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
             notifyIcon.Visible = true;
 
@@ -164,5 +165,10 @@ namespace csxto
             public string ftime { get; set; }
         }
         #endregion
+
+        private void MetroWindow_Closed(object sender, EventArgs e)
+        {
+            notifyIcon.Dispose();
+        }
     }
 }
