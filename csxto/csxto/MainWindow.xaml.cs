@@ -25,9 +25,23 @@ namespace csxto
         {
             InitializeComponent();
 
+            //TODO:Issue #2
 
             notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
             notifyIcon.Visible = true;
+            notifyIcon.MouseDoubleClick += notifyIcon_MouseClick;
+            notifyIcon.MouseClick += notifyIcon_MouseClick;
+
+            System.Windows.Forms.MenuItem contextMenuShow = new System.Windows.Forms.MenuItem("Show");
+
+            System.Windows.Forms.MenuItem contextMenuExit = new System.Windows.Forms.MenuItem("Exit");
+
+            System.Windows.Forms.MenuItem[] contextMenu = new System.Windows.Forms.MenuItem[] { contextMenuShow , contextMenuExit };
+            notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(contextMenu);
+            
+            
+            contextMenuExit.Click += MetroWindow_Closed;
+            contextMenuShow.Click += notifyIcon_MouseClick;
 
             if (!ConfigLoader.DataFileCheck()) return;
             var companyData = ConfigLoader.MakeCompanyDict();
@@ -169,6 +183,26 @@ namespace csxto
         private void MetroWindow_Closed(object sender, EventArgs e)
         {
             notifyIcon.Dispose();
+            Environment.Exit(0);
+            
+        }
+
+        private void MetroWindow_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
+            {
+                ShowInTaskbar = false;
+                notifyIcon.BalloonTipTitle = "Express Tracker";
+                notifyIcon.BalloonTipText = "I am here, don't forget";
+                notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+                notifyIcon.ShowBalloonTip(2000);
+            }
+        }
+
+        private void notifyIcon_MouseClick(object sender, EventArgs eventArgs)
+        {
+            ShowInTaskbar = true;
+            WindowState = WindowState.Normal;
         }
     }
 }
