@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using Newtonsoft.Json;
+
 
 namespace csxto.ViewModel
 {
@@ -37,6 +40,12 @@ namespace csxto.ViewModel
                     break;
             }
             return baseString + returnState;
+        }
+
+        internal static MainWindow.Json DeserializeJson(string rawJson)
+        {
+            var json = JsonConvert.DeserializeObject<MainWindow.Json>(rawJson);
+            return json;
         }
 
     }

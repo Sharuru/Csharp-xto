@@ -90,22 +90,16 @@ namespace csxto
                 this.ShowMessageAsync("ERROR", ex.Message);
                 return;
             }
-            DeserializeJson(rawJson);
-        }
-
-        private async void DeserializeJson(string rawJson)
-        {
-            var json = JsonConvert.DeserializeObject<Json>(rawJson);
+            var json = SingleTrack.DeserializeJson(rawJson);
             if (json.status != "200")
             {
-                await this.ShowMessageAsync("ERROR", "Number may out of date.");
+                this.ShowMessageAsync("ERROR", "Number may out of date. ");
             }
             else
             {
                 ShowSingleTrackInfo(json);
             }
         }
-
 
 
         #region SingleTrackEventHandle
