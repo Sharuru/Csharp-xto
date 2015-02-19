@@ -69,37 +69,7 @@ namespace csxto
             }
         }
 
-        private void TrackSingle(string id, string company)
-        {
-            string rawJson = null;
-            try
-            {
-                var url = "http://www.kuaidi100.com/query?type=" + company + "&postid=" + id;
-                var httpWReq = (HttpWebRequest)WebRequest.Create(url);
-                var httpWResp = (HttpWebResponse)httpWReq.GetResponse();
-                var rawStream = httpWResp.GetResponseStream();
-                if (rawStream != null)
-                {
-                    var reader = new StreamReader(rawStream);
-                    rawJson = reader.ReadToEnd();
-                }
-                httpWResp.Close();
-            }
-            catch (Exception ex)
-            {
-                this.ShowMessageAsync("ERROR", ex.Message);
-                return;
-            }
-            var json = SingleTrack.DeserializeJson(rawJson);
-            if (json.status != "200")
-            {
-                this.ShowMessageAsync("ERROR", "Number may out of date. ");
-            }
-            else
-            {
-                ShowSingleTrackInfo(json);
-            }
-        }
+
 
 
         #region SingleTrackEventHandle
@@ -116,6 +86,22 @@ namespace csxto
         #endregion
 
         #region SingleTrackViewHandle
+        private void TrackSingle(string id, string company)
+        {
+            //Download json
+            string rawJson = JsonDownloader.GetJson(id, company);
+            //Handle json
+            var json = SingleTrack.DeserializeJson(rawJson);
+            if (json.status != "200")
+            {
+                this.ShowMessageAsync("ERROR", "Number may out of date. ");
+            }
+            else
+            {
+                ShowSingleTrackInfo(json);
+            }
+        }
+
         private void ShowSingleTrackInfo(Json json)
         {
             //Handle overview
@@ -158,7 +144,6 @@ namespace csxto
         {
             notifyIcon.Dispose();
             Environment.Exit(0);
-            
         }
 
         private void MetroWindow_StateChanged(object sender, EventArgs e)
