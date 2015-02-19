@@ -38,7 +38,7 @@ namespace csxto.ViewModel
 
         internal static JsonData.Json DeserializeJson(string rawJson)
         {
-            JsonData.Json json = JsonConvert.DeserializeObject<JsonData.Json>(rawJson);
+            var json = JsonConvert.DeserializeObject<JsonData.Json>(rawJson);
             return json;
         }
     }
