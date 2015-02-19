@@ -9,6 +9,8 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using csxto.Model;
+using csxto.ViewModel;
 using MahApps.Metro.Controls.Dialogs;
 using Newtonsoft.Json;
 
@@ -43,18 +45,12 @@ namespace csxto
             contextMenuExit.Click += MetroWindow_Closed;
             contextMenuShow.Click += notifyIcon_MouseClick;
 
-            if (!ConfigLoader.DataFileCheck()) return;
-            var companyData = ConfigLoader.MakeCompanyDict();
+            if (!DataLoader.DataFileCheck()) return;
+            var companyData = DataLoader.MakeCompanyDict();
             ComboBoxSingleCompany.ItemsSource = companyData;
             ComboBoxSingleCompany.DisplayMemberPath = "Key";
             ComboBoxSingleCompany.SelectedValuePath = "Value";
             ComboBoxSingleCompany.SelectedIndex = 0;
-        }
-
-        private bool IsSingleInputLeagel()
-        {
-            //Check user input
-            return TextBoxSingleId.Text != "" && ComboBoxSingleCompany.SelectedItem != null;
         }
 
         private async void ButtonSingleTrack_Click(object sender, RoutedEventArgs e)
@@ -63,7 +59,7 @@ namespace csxto
             DataGridSingle.Items.Clear();
             LabelSingleStateo.Content = "State:";
 
-            if (IsSingleInputLeagel() == false)
+            if (TextBoxSingleId.Text == null)
             {
                 await this.ShowMessageAsync("ERROR", "Please check your input info.");
             }
@@ -72,6 +68,7 @@ namespace csxto
                 TrackSingle(TextBoxSingleId.Text, ComboBoxSingleCompany.SelectedValue.ToString());
             }
         }
+
         private void TrackSingle(string id, string company)
         {
             string rawJson = null;
@@ -105,10 +102,13 @@ namespace csxto
             }
             else
             {
-                ShowTrackInfo(json);
+                ShowSingleTrackInfo(json);
             }
         }
 
+
+
+        #region SingleTrackEventHandle
         private void RightWindowCommandsAbout_Click(object sender, RoutedEventArgs e)
         {
             FlyoutAbout.IsOpen = true;
@@ -116,38 +116,16 @@ namespace csxto
 
         private void TextBlockAbout_Click(object sender, MouseButtonEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/Sharuru/Csharp-xto");
+            VmGeneral.JumpToProjectPage();
         }
 
-        private void ShowTrackInfo(Json json)
+        #endregion
+
+        #region SingleTrackViewHandle
+        private void ShowSingleTrackInfo(Json json)
         {
             //Handle overview
-            string state = null;
-            switch (json.state)
-            {
-                case "0":
-                    state = "Shipping";
-                    break;
-                case "1":
-                    state = "Company received";
-                    break;
-                case "2":
-                    state = "Difficult";
-                    break;
-                case "3":
-                    state = "Received";
-                    break;
-                case "4":
-                    state = "Returned";
-                    break;
-                case "5":
-                    state = "Delivering";
-                    break;
-                case "6":
-                    state = "Returning";
-                    break;
-            }
-            LabelSingleStateo.Content = "State: " + state;
+            LabelSingleStateo.Content = SingleTrack.SingleOverviewBuilder(json.state);
             //Handle dataGirdViewSingle
             foreach (var data in json.data)
             {
@@ -157,6 +135,8 @@ namespace csxto
                 });
             }
         }
+
+        #endregion
 
         #region Data structure
         public class Json

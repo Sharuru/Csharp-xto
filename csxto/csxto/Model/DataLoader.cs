@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows;
 
-namespace csxto
+namespace csxto.Model
 {
-    class ConfigLoader
+    class DataLoader
     {
         public static bool DataFileCheck()
         {
@@ -19,6 +19,7 @@ namespace csxto
 
         public static Dictionary<string,string> MakeCompanyDict()
         {
+            //Make company data
             var companyData = new Dictionary<string, string>();
             var datPath = Environment.CurrentDirectory + "\\company.dat";
             var sr = new StreamReader(datPath);
