@@ -143,10 +143,5 @@ namespace csxto
 
         #endregion
 
-        #region Data structure
-
-        
-        #endregion
-        
     }
 }
