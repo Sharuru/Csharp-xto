@@ -56,8 +56,7 @@ namespace csxto
         private async void ButtonSingleTrack_Click(object sender, RoutedEventArgs e)
         {
             //Clean first
-            DataGridSingle.Items.Clear();
-            LabelSingleStateo.Content = "State:";
+            InitSingleTrack();
 
             if (TextBoxSingleId.Text == null)
             {
@@ -68,6 +67,7 @@ namespace csxto
                 TrackSingle(TextBoxSingleId.Text, ComboBoxSingleCompany.SelectedValue.ToString());
             }
         }
+
 
 
 
@@ -86,6 +86,13 @@ namespace csxto
         #endregion
 
         #region SingleTrackViewHandle
+
+        private void InitSingleTrack()
+        {
+            DataGridSingle.Items.Clear();
+            LabelSingleStateo.Content = "State:";
+        }
+
         private void TrackSingle(string id, string company)
         {
             //Download json
