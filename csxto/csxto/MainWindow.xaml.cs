@@ -26,38 +26,21 @@ namespace csxto
         public MainWindow()
         {
             InitializeComponent();
-
-            //TODO:Issue #2
-
-            notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
-            notifyIcon.Visible = true;
-            notifyIcon.MouseDoubleClick += notifyIcon_MouseClick;
-            notifyIcon.MouseClick += notifyIcon_MouseClick;
-
-            System.Windows.Forms.MenuItem contextMenuShow = new System.Windows.Forms.MenuItem("Show");
-
-            System.Windows.Forms.MenuItem contextMenuExit = new System.Windows.Forms.MenuItem("Exit");
-
-            System.Windows.Forms.MenuItem[] contextMenu = new System.Windows.Forms.MenuItem[] { contextMenuShow , contextMenuExit };
-            notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(contextMenu);
-            
-            
-            contextMenuExit.Click += MetroWindow_Closed;
-            contextMenuShow.Click += notifyIcon_MouseClick;
-
-            if (!DataLoader.DataFileCheck()) return;
-            var companyData = DataLoader.MakeCompanyDict();
-            ComboBoxSingleCompany.ItemsSource = companyData;
-            ComboBoxSingleCompany.DisplayMemberPath = "Key";
-            ComboBoxSingleCompany.SelectedValuePath = "Value";
-            ComboBoxSingleCompany.SelectedIndex = 0;
+            InitTray();
+            InitComboBoxSingleCompany();
         }
+
+
+
+
+
+        #region SingleTrackEventHandle
 
         private async void ButtonSingleTrack_Click(object sender, RoutedEventArgs e)
         {
             //Clean first
             InitSingleTrack();
-
+            //Start track
             if (TextBoxSingleId.Text == null)
             {
                 await this.ShowMessageAsync("ERROR", "Please check your input info.");
@@ -68,11 +51,6 @@ namespace csxto
             }
         }
 
-
-
-
-
-        #region SingleTrackEventHandle
         private void RightWindowCommandsAbout_Click(object sender, RoutedEventArgs e)
         {
             FlyoutAbout.IsOpen = true;
@@ -83,6 +61,24 @@ namespace csxto
             VmGeneral.JumpToProjectPage();
         }
 
+        private void MetroWindow_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
+            {
+                ShowInTaskbar = false;
+                notifyIcon.BalloonTipTitle = @"Express Tracker";
+                notifyIcon.BalloonTipText = @"I am here, don't forget";
+                notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+                notifyIcon.ShowBalloonTip(1000);
+            }
+        }
+
+        private void notifyIcon_MouseClick(object sender, EventArgs eventArgs)
+        {
+            ShowInTaskbar = true;
+            WindowState = WindowState.Normal;
+        }
+
         #endregion
 
         #region SingleTrackViewHandle
@@ -91,6 +87,35 @@ namespace csxto
         {
             DataGridSingle.Items.Clear();
             LabelSingleStateo.Content = "State:";
+        }
+
+        private void InitTray()
+        {
+            notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
+            notifyIcon.Visible = true;
+            notifyIcon.MouseDoubleClick += notifyIcon_MouseClick;
+            notifyIcon.MouseClick += notifyIcon_MouseClick;
+
+            System.Windows.Forms.MenuItem contextMenuShow = new System.Windows.Forms.MenuItem("Show");
+
+            System.Windows.Forms.MenuItem contextMenuExit = new System.Windows.Forms.MenuItem("Exit");
+
+            System.Windows.Forms.MenuItem[] contextMenu = new System.Windows.Forms.MenuItem[] { contextMenuShow, contextMenuExit };
+            notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(contextMenu);
+
+
+            contextMenuExit.Click += MetroWindow_Closed;
+            contextMenuShow.Click += notifyIcon_MouseClick;
+        }
+
+        private void InitComboBoxSingleCompany()
+        {
+            if (!DataLoader.DataFileCheck()) return;
+            var companyData = DataLoader.MakeCompanyDict();
+            ComboBoxSingleCompany.ItemsSource = companyData;
+            ComboBoxSingleCompany.DisplayMemberPath = "Key";
+            ComboBoxSingleCompany.SelectedValuePath = "Value";
+            ComboBoxSingleCompany.SelectedIndex = 0;
         }
 
         private void TrackSingle(string id, string company)
@@ -153,22 +178,6 @@ namespace csxto
             Environment.Exit(0);
         }
 
-        private void MetroWindow_StateChanged(object sender, EventArgs e)
-        {
-            if (WindowState == WindowState.Minimized)
-            {
-                ShowInTaskbar = false;
-                notifyIcon.BalloonTipTitle = "Express Tracker";
-                notifyIcon.BalloonTipText = "I am here, don't forget";
-                notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
-                notifyIcon.ShowBalloonTip(2000);
-            }
-        }
 
-        private void notifyIcon_MouseClick(object sender, EventArgs eventArgs)
-        {
-            ShowInTaskbar = true;
-            WindowState = WindowState.Normal;
-        }
     }
 }
