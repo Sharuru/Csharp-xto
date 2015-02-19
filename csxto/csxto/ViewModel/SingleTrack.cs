@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using csxto.Model;
 using Newtonsoft.Json;
-
 
 namespace csxto.ViewModel
 {
@@ -42,11 +36,10 @@ namespace csxto.ViewModel
             return baseString + returnState;
         }
 
-        internal static MainWindow.Json DeserializeJson(string rawJson)
+        internal static JsonData.Json DeserializeJson(string rawJson)
         {
-            var json = JsonConvert.DeserializeObject<MainWindow.Json>(rawJson);
+            JsonData.Json json = JsonConvert.DeserializeObject<JsonData.Json>(rawJson);
             return json;
         }
-
     }
 }

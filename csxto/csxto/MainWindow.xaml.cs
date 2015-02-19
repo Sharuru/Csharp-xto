@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Security.AccessControl;
 using System.Windows;
-using System.Drawing;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Media.Imaging;
 using csxto.Model;
 using csxto.ViewModel;
 using MahApps.Metro.Controls.Dialogs;
-using Newtonsoft.Json;
 
 namespace csxto
 {
@@ -21,7 +14,7 @@ namespace csxto
     /// </summary>
     public partial class MainWindow
     {
-        private NotifyIcon notifyIcon = new NotifyIcon();
+        private readonly NotifyIcon _notifyIcon = new NotifyIcon();
 
         public MainWindow()
         {
@@ -29,11 +22,7 @@ namespace csxto
             InitTray();
             InitComboBoxSingleCompany();
         }
-
-
-
-
-
+        
         #region SingleTrackEventHandle
 
         private async void ButtonSingleTrack_Click(object sender, RoutedEventArgs e)
@@ -66,10 +55,10 @@ namespace csxto
             if (WindowState == WindowState.Minimized)
             {
                 ShowInTaskbar = false;
-                notifyIcon.BalloonTipTitle = @"Express Tracker";
-                notifyIcon.BalloonTipText = @"I am here, don't forget";
-                notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
-                notifyIcon.ShowBalloonTip(1000);
+                _notifyIcon.BalloonTipTitle = @"Express Tracker";
+                _notifyIcon.BalloonTipText = @"I am here, don't forget";
+                _notifyIcon.BalloonTipIcon = ToolTipIcon.Info;
+                _notifyIcon.ShowBalloonTip(1000);
             }
         }
 
@@ -77,6 +66,12 @@ namespace csxto
         {
             ShowInTaskbar = true;
             WindowState = WindowState.Normal;
+        }
+
+        private void MetroWindow_Closed(object sender, EventArgs e)
+        {
+            _notifyIcon.Dispose();
+            Environment.Exit(0);
         }
 
         #endregion
@@ -91,19 +86,17 @@ namespace csxto
 
         private void InitTray()
         {
-            notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
-            notifyIcon.Visible = true;
-            notifyIcon.MouseDoubleClick += notifyIcon_MouseClick;
-            notifyIcon.MouseClick += notifyIcon_MouseClick;
-
-            System.Windows.Forms.MenuItem contextMenuShow = new System.Windows.Forms.MenuItem("Show");
-
-            System.Windows.Forms.MenuItem contextMenuExit = new System.Windows.Forms.MenuItem("Exit");
-
-            System.Windows.Forms.MenuItem[] contextMenu = new System.Windows.Forms.MenuItem[] { contextMenuShow, contextMenuExit };
-            notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(contextMenu);
-
-
+            //notifyIcon
+            _notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
+            _notifyIcon.Visible = true;
+            _notifyIcon.MouseDoubleClick += notifyIcon_MouseClick;
+            _notifyIcon.MouseClick += notifyIcon_MouseClick;
+            //contextMenu
+            var contextMenuShow = new System.Windows.Forms.MenuItem("Show");
+            var contextMenuExit = new System.Windows.Forms.MenuItem("Exit");
+            System.Windows.Forms.MenuItem[] contextMenu = { contextMenuShow, contextMenuExit };
+            _notifyIcon.ContextMenu = new System.Windows.Forms.ContextMenu(contextMenu);
+            //contextMenuEvent
             contextMenuExit.Click += MetroWindow_Closed;
             contextMenuShow.Click += notifyIcon_MouseClick;
         }
@@ -121,7 +114,7 @@ namespace csxto
         private void TrackSingle(string id, string company)
         {
             //Download json
-            string rawJson = JsonDownloader.GetJson(id, company);
+            var rawJson = JsonDownloader.GetJson(id, company);
             //Handle json
             var json = SingleTrack.DeserializeJson(rawJson);
             if (json.status != "200")
@@ -134,7 +127,7 @@ namespace csxto
             }
         }
 
-        private void ShowSingleTrackInfo(Json json)
+        private void ShowSingleTrackInfo(JsonData.Json json)
         {
             //Handle overview
             LabelSingleStateo.Content = SingleTrack.SingleOverviewBuilder(json.state);
@@ -151,33 +144,9 @@ namespace csxto
         #endregion
 
         #region Data structure
-        public class Json
-        {
-            public string message { get; set; }
-            public string nu { get; set; }
-            public string ischeck { get; set; }
-            public string com { get; set; }
-            public string updatetime { get; set; }
-            public string status { get; set; }
-            public string condition { get; set; }
-            public List<Data> data { get; set; }
-            public string state { get; set; }
-        }
-        public class Data
-        {
-            public string time { get; set; }
-            public string location { get; set; }
-            public string context { get; set; }
-            public string ftime { get; set; }
-        }
+
+        
         #endregion
-
-        private void MetroWindow_Closed(object sender, EventArgs e)
-        {
-            notifyIcon.Dispose();
-            Environment.Exit(0);
-        }
-
-
+        
     }
 }

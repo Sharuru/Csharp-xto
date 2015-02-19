@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace csxto.ViewModel
+﻿namespace csxto.ViewModel
 {
     class VmGeneral
     {
@@ -13,6 +6,5 @@ namespace csxto.ViewModel
         {
             System.Diagnostics.Process.Start("https://github.com/Sharuru/Csharp-xto");
         }
-
     }
 }
