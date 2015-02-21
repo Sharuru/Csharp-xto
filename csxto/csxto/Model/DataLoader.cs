@@ -17,7 +17,7 @@ namespace csxto.Model
             return true;
         }
 
-        public static Dictionary<string,string> MakeCompanyDict()
+        public static Dictionary<string, string> MakeCompanyDict()
         {
             //Make company data
             var companyData = new Dictionary<string, string>();
@@ -28,7 +28,7 @@ namespace csxto.Model
                 var rawData = sr.ReadLine();
                 if (rawData == null) continue;
                 var data = rawData.Split(',');
-                companyData.Add(data[0],data[1]);
+                companyData.Add(data[0], data[1]);
             }
             return companyData;
         }

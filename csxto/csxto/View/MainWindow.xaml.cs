@@ -22,7 +22,7 @@ namespace csxto
             InitTray();
             InitComboBoxSingleCompany();
         }
-        
+
         #region SingleTrackEventHandle
 
         private async void ButtonSingleTrack_Click(object sender, RoutedEventArgs e)
@@ -136,7 +136,7 @@ namespace csxto
             {
                 DataGridSingle.Items.Add(new DataGridRow
                 {
-                    Item = new {TIME = data.time, PROGRESS = data.context}
+                    Item = new { TIME = data.time, PROGRESS = data.context }
                 });
             }
         }

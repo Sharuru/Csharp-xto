@@ -5,7 +5,7 @@
         Title="Express Tracker" Height="375" Width="481"
         ShowIconOnTitleBar="False"
         GlowBrush="{DynamicResource AccentColorBrush}"
-        BorderThickness="1" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" Icon="app.ico" MinWidth="485" MinHeight="375" Closed="MetroWindow_Closed" StateChanged="MetroWindow_StateChanged"
+        BorderThickness="1" WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip"  MinWidth="485" MinHeight="375" Closed="MetroWindow_Closed" StateChanged="MetroWindow_StateChanged"
         >
     <Grid Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
         <Label x:Name="LabelGuideSingel1" Content="Tracking number:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="27" Width="113"/>
