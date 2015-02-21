@@ -1,7 +1,7 @@
-﻿<Controls:MetroWindow x:Class="csxto.MainWindow"
+﻿<controls:MetroWindow x:Class="csxto.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         Title="Express Tracker" Height="375" Width="481"
         ShowIconOnTitleBar="False"
         GlowBrush="{DynamicResource AccentColorBrush}"
@@ -9,7 +9,7 @@
         >
     <Grid Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
         <Label x:Name="LabelGuideSingel1" Content="Tracking number:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="27" Width="113"/>
-        <TextBox x:Name="TextBoxSingleId" Controls:TextBoxHelper.Watermark="Please enter your tracking number" Controls:TextBoxHelper.ClearTextButton="True" Height="23" Margin="128,11,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="0.658,-0.231" HorizontalAlignment="Left" Width="226" TabIndex="-1"/>
+        <TextBox x:Name="TextBoxSingleId" controls:TextBoxHelper.Watermark="Please enter your tracking number" controls:TextBoxHelper.ClearTextButton="True" Height="23" Margin="128,11,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="0.658,-0.231" HorizontalAlignment="Left" Width="226" TabIndex="-1"/>
         <Label x:Name="LabelGuideSingle2" Content="Express company:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="35" Width="113"/>
         <ComboBox x:Name="ComboBoxSingleCompany" Margin="128,42,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="226" IsEditable="True" IsTextSearchCaseSensitive="True"/>
         <Label x:Name="LabelGuideSingle4" Content="Tracking info:" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Height="26" Width="154"/>
@@ -19,21 +19,21 @@
                 <DataGridTextColumn CanUserResize="False" ClipboardContentBinding="{x:Null}" Header="PROGRESS" IsReadOnly="True" Width="10000" Binding ="{Binding PROGRESS}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Controls:ToggleSwitch x:Name="ToggleSwitchNotify" OnLabel="Notify ON" OffLabel="Notify OFF" Margin="331,76,10,226" FontSize="12" FontFamily="Microsoft YaHei" />
-        <Button x:Name="ButtonSingleTrack" Content="Track" Margin="374,11,10,0" VerticalAlignment="Top" Height="58" Style="{DynamicResource SquareButtonStyle}" Click="ButtonSingleTrack_Click" Controls:ButtonHelper.PreserveTextCase="True"/>
+        <controls:ToggleSwitch x:Name="ToggleSwitchNotify" OnLabel="Notify ON" OffLabel="Notify OFF" Margin="331,76,10,226" FontSize="12" FontFamily="Microsoft YaHei" />
+        <Button x:Name="ButtonSingleTrack" Content="Track" Margin="374,11,10,0" VerticalAlignment="Top" Height="58" Style="{DynamicResource SquareButtonStyle}" Click="ButtonSingleTrack_Click" controls:ButtonHelper.PreserveTextCase="True"/>
         <Label x:Name="LabelSingleStateo" Content="State:" HorizontalAlignment="Left" Margin="164,83,0,0" VerticalAlignment="Top"/>
     </Grid>
-    <Controls:MetroWindow.RightWindowCommands>
-        <Controls:WindowCommands>
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
             <Button x:Name="RightWindowCommandsAbout" Content="About" Click="RightWindowCommandsAbout_Click" />
-        </Controls:WindowCommands>
-    </Controls:MetroWindow.RightWindowCommands>
-    <Controls:MetroWindow.Flyouts>
-        <Controls:FlyoutsControl>
-            <Controls:Flyout x:Name="FlyoutAbout" Header="About" Position="Right" Theme="Dark" IsOpen="False" Height="200" Width="450">
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout x:Name="FlyoutAbout" Header="About" Position="Right" Theme="Dark" IsOpen="False" Height="200" Width="450">
                 <TextBlock x:Name="TextBlockAbout" Height="200" Text=
                            "Express Tracker is a simple software using API provided by Kuaidi100. &#x000A;Let user tracking express delivery easily.&#x000A; &#x000A;You can get more information at project site: &#x000A;https://github.com/Sharuru/Csharp-xto" Foreground="White" Margin="10" Width="555" Padding="15,0,0,0" Cursor="Hand" MouseDown="TextBlockAbout_Click"/>
-            </Controls:Flyout>
-        </Controls:FlyoutsControl>
-    </Controls:MetroWindow.Flyouts>
-</Controls:MetroWindow>
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
+</controls:MetroWindow>

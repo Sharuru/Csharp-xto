@@ -7,7 +7,7 @@ using csxto.Model;
 using csxto.ViewModel;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace csxto
+namespace csxto.View
 {
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
