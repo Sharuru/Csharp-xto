@@ -11,7 +11,6 @@ namespace csxto
         public static void Main()
         {
             AppDomain.CurrentDomain.AssemblyResolve += OnResolveAssembly;
-
             App.Main(); // Run WPF startup code.
         }
 
