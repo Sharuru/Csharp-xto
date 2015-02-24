@@ -19,7 +19,7 @@
                 <DataGridTextColumn CanUserResize="False" ClipboardContentBinding="{x:Null}" Header="PROGRESS" IsReadOnly="True" Width="10000" Binding ="{Binding PROGRESS}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <controls:ToggleSwitch x:Name="ToggleSwitchNotify" OnLabel="Notify ON" OffLabel="Notify OFF" Margin="331,76,10,226" FontSize="12" FontFamily="Microsoft YaHei" />
+        <controls:ToggleSwitch x:Name="ToggleSwitchNotify" OnLabel="Notify ON" OffLabel="Notify OFF" Margin="0,76,10,226" FontSize="12" FontFamily="Microsoft YaHei" HorizontalAlignment="Right" Width="134" />
         <Button x:Name="ButtonSingleTrack" Content="Track" Margin="374,11,10,0" VerticalAlignment="Top" Height="58" Style="{DynamicResource SquareButtonStyle}" Click="ButtonSingleTrack_Click" controls:ButtonHelper.PreserveTextCase="True"/>
         <Label x:Name="LabelSingleStateo" Content="State:" HorizontalAlignment="Left" Margin="164,83,0,0" VerticalAlignment="Top"/>
     </Grid>
