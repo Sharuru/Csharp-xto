@@ -11,7 +11,7 @@
         <Label x:Name="LabelGuideSingel1" Content="Tracking number:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="27" Width="113"/>
         <TextBox x:Name="TextBoxSingleId" controls:TextBoxHelper.Watermark="Please enter your tracking number" controls:TextBoxHelper.ClearTextButton="True" Height="23" Margin="128,11,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" RenderTransformOrigin="0.658,-0.231" HorizontalAlignment="Left" Width="226" TabIndex="-1"/>
         <Label x:Name="LabelGuideSingle2" Content="Express company:" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Height="35" Width="113"/>
-        <ComboBox x:Name="ComboBoxSingleCompany" Margin="128,42,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="226" IsEditable="True" IsTextSearchCaseSensitive="True"/>
+        <ComboBox x:Name="ComboBoxSingleCompany" Margin="128,42,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="226" IsEditable="True"/>
         <Label x:Name="LabelGuideSingle4" Content="Tracking info:" HorizontalAlignment="Left" Margin="10,82,0,0" VerticalAlignment="Top" Height="26" Width="154"/>
         <DataGrid x:Name="DataGridSingle" Margin="10,113,10,14" GridLinesVisibility="Horizontal" VerticalGridLinesBrush="#FF21AC5A" HorizontalScrollBarVisibility="Disabled" CanUserSortColumns="False" HorizontalGridLinesBrush="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}">
             <DataGrid.Columns>
