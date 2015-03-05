@@ -30,7 +30,7 @@ namespace csxto.View
             //Clean first
             InitSingleTrack();
             //Start track
-            if (TextBoxSingleId.Text == null)
+            if (TextBoxSingleId.Text == null || ComboBoxSingleCompany.SelectedItem == null)
             {
                 await this.ShowMessageAsync("ERROR", "Please check your input info.");
             }
