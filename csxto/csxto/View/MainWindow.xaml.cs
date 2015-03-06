@@ -21,6 +21,7 @@ namespace csxto.View
             InitializeComponent();
             InitTray();
             InitComboBoxSingleCompany();
+            TextBoxSingleId.Focus();
         }
 
         #region SingleTrackEventHandle
@@ -30,7 +31,7 @@ namespace csxto.View
             //Clean first
             InitSingleTrack();
             //Start track
-            if (TextBoxSingleId.Text == null || ComboBoxSingleCompany.SelectedItem == null)
+            if (TextBoxSingleId.Text == "" || ComboBoxSingleCompany.SelectedItem == null)
             {
                 await this.ShowMessageAsync("ERROR", "Please check your input info.");
             }
