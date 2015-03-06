@@ -12,6 +12,14 @@ An API for Node.js to query each express with ♥ developed by [XadillaX](https:
 
 You can get more information at [https://github.com/XadillaX/xto](https://github.com/XadillaX/xto).
 
+##Usage
+
+Just lanuch the tracker, enter you tracking number and express company and press 'Track' button.
+
+You can select your express company by entering Pinyin initials, for example:
+`ZTKD` means `中通快递`.
+
+
 ##Details
 
 There are two branches in this repo, but 'winform' branch won't be updated anymore.
